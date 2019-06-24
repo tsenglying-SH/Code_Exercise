@@ -1,0 +1,67 @@
+/**
+* Definition of TreeNode:
+* class TreeNode {
+* public:
+*     int val;
+*     TreeNode *left, *right;
+*     TreeNode(int val) {
+*         this->val = val;
+*         this->left = this->right = NULL;
+*     }
+* }
+*/
+
+//递归方法 参考九章算法python代码
+class Solution {
+public:
+	/**
+	* @param root: a TreeNode, the root of the binary tree
+	* @return: nothing
+	*/
+	void flatten(TreeNode * root) {
+		// write your code here
+		if (root == NULL) {
+			return;
+		}
+
+		if (last_node != NULL) {
+			last_node->left = NULL;
+			last_node->right = root;
+		}
+
+		last_node = root;
+		TreeNode * left = root->left;
+		TreeNode * right = root->right;
+		flatten(left);
+		flatten(right);
+	}
+private:
+	TreeNode * last_node = nullptr;
+};
+
+
+
+//非递归方法 参考九章算法题解
+class Solution {
+public:
+	/**
+	* @param root: a TreeNode, the root of the binary tree
+	* @return: nothing
+	*/
+	void flatten(TreeNode * root) {
+		// write your code here
+		if (root == NULL) { return; }
+		while (root) {
+			if (root->left) {
+				TreeNode * pre = root->left;
+				while (pre->right) {
+					pre = pre->right;
+				}
+				pre->right = root->right;
+				root->right = root->left;
+				root->left = NULL;
+			}
+			root = root->right;
+		}
+	}
+};
