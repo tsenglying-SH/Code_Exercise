@@ -1,9 +1,9 @@
 # Code_Exercise
 My answer for some problems on Leetcode ,Lintcode..
 
-待填的坑：
+TODO：
 
-200题的Maracher
+String/LintCode_200_Leetcode_5_LongestPalindromicSubstring Maracher Method to be added
 
 458题可以研究一下bisect库的底层实现
 
