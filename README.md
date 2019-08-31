@@ -3,7 +3,7 @@ My answer for some problems on Leetcode ,Lintcode..
 
 TODO：
 
-String/LintCode_200_Leetcode_5_LongestPalindromicSubstring Maracher Method to be added
+String/LintCode_200_Leetcode_5_LongestPalindromicSubstring |Maracher Method to be added
 
 458题可以研究一下bisect库的底层实现
 
