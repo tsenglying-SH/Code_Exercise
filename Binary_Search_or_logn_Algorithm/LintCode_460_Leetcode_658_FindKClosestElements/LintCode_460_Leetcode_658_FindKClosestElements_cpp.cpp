@@ -82,7 +82,8 @@ public:
 				}
 			}
 		}
-		vector<int> result(arr.begin() + start + 1, arr.begin() + end);
-		return result;
+		//vector<int> result(arr.begin() + start + 1, arr.begin() + end);
+		//return result;
+		return vector<int>(arr.begin() + start + 1, arr.begin() + end);
 	}
 };
