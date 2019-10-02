@@ -1,4 +1,4 @@
-// DP method Time O(n), Space O(1)
+// Greedy method Time O(n), Space O(1)
 class Solution {
 public:
 	bool canJump(vector<int>& nums) {
