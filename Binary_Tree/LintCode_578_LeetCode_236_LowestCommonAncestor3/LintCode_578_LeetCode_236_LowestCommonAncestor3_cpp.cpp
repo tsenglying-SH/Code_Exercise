@@ -24,7 +24,7 @@ public:
 		if (root == nullptr) {
 			return false;
 		}
-		// all elements in the tree are different, so left, mid and right cannot be set to true because 1 node.
+		// all elements in the tree are different, so left, mid and right cannot be set to true due to 1 node.
 		bool left = search_in_tree(root->left, p, q);
 		bool right = search_in_tree(root->right, p, q);
 		bool mid = root == p || root == q;
