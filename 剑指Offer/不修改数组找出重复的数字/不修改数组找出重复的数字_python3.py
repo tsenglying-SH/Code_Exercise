@@ -10,8 +10,7 @@ def duplicateInArray(nums):
     :type nums: List[int]
     :rtype int
     """
-    n = len(nums)
-    start, end = 1, n
+    start, end = 1, len(nums) - 1
     while start <= end:
         mid = start + (end - start) // 2
         count = 0

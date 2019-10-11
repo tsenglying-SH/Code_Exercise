@@ -2,7 +2,7 @@
 class Solution {
 public:
 	int duplicateInArray(vector<int>& nums) {
-		int start = 1, end = nums.size();
+		int start = 1, end = nums.size() - 1;
 		while (start <= end) {
 			int mid = start + ((end - start) >> 1);
 			int count = 0;
