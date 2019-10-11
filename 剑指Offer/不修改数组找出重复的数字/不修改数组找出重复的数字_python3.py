@@ -18,7 +18,7 @@ def duplicateInArray(nums):
         for num in nums:
             if num <= mid:
                 count += 1
-        if count >= mid:
+        if count > mid:
             end = mid - 1
         else:
             start = mid + 1
@@ -26,3 +26,4 @@ def duplicateInArray(nums):
     return start
 
 print(duplicateInArray([2, 3, 5, 4, 3, 2, 6, 7]))
+print(duplicateInArray([6, 3, 1, 4, 5, 2, 6]))

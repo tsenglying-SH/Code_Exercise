@@ -11,7 +11,7 @@ public:
 					count++;
 				}
 			}
-			if (count >= mid) {
+			if (count > mid) {
 				end = mid - 1;
 			}
 			else {
