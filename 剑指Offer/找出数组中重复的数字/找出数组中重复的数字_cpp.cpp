@@ -37,16 +37,17 @@ public:
 class Solution {
 public:
 	int duplicateInArray(vector<int>& nums) {
-		if (nums.size() == 0) {
+		if (nums.empty()) {
 			return -1;
 		}
-
+		// check whether the data is valid
 		for (int i = 0; i < nums.size(); i++) {
 			if (nums[i] > nums.size() - 1 || nums[i] < 0) {
 				return -1;
 			}
 		}
 
+		// do the swap to find some duplicate
 		for (int j = 0; j < nums.size(); j++) {
 			while (nums[j] != j) {
 				if (nums[nums[j]] == nums[j]) {
