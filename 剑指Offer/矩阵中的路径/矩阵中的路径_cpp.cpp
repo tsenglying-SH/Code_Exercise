@@ -1,4 +1,4 @@
-// Acwing dfs
+// Acwing dfs, time O(3^l * n^2)
 class Solution {
 public:
 	bool hasPath(vector<vector<char>>& matrix, string str) {

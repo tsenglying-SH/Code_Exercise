@@ -4,7 +4,7 @@ Created on Sun Oct 13 15:28:14 2019
 
 @author: 84685
 """
-# Acwing DFS
+# Acwing DFS, time O(3^l * n^2)
 class Solution(object):
     def hasPath(self, matrix, string):
         """
