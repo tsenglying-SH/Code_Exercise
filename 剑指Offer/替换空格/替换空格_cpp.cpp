@@ -71,7 +71,7 @@ public:
 		int new_len = length + 2 * space_cnt;
 
 		// here may cause memory overlap
-		// notice cstring char array end with '/0', so 1 more length
+		// notice cstring char array end with '\0', so 1 more length
 		int left = length, right = new_len;
 
 		while (left >= 0 && right >= 0) {
@@ -93,38 +93,26 @@ class Solution {
 public:
 	// if length means char array's capacity, we can avoid memory overlap, when overlap happens, just give up replacing
 	void replaceSpace(char *str, int length) {
-		if (length <= 0 || str == nullptr) {
-			return;
-		}
-		int originLength = 0, newLength = 0;
-		for (int i = 0; i < length; ++i) {
-			if (str[i] == ' ') {
-				++originLength;
-				newLength += 3;
-			}
-			else {
-				++originLength;
-				++newLength;
-			}
+		if (length <= 0) return;
+		int i = 0;
+		while (str[i] != '\0') ++i;
+
+		int old_len = i + 1, new_len = old_len;
+		for (int i = 0; i < old_len; ++i) {
+			if (str[i] == ' ') new_len += 2;
 		}
 		// str capacity too small, may cause memory overlap
-		if (length < newLength) {
-			return;
-		}
-		// notice cstring char array end with '/0'
-		int left = originLength, right = newLength;
-
-		while (left >= 0 && right >= 0) {
-			if (str[left] != ' ') {
-				str[right--] = str[left--];
-			}
+		if (new_len > length) return;
+		// notice cstring char array end with '\0'
+		int old_p = old_len, new_p = new_len;
+		while (old_p >= 0 && new_p >= 0) {
+			if (str[old_p] != ' ') str[new_p--] = str[old_p--];
 			else {
-				--left;
-				str[right--] = '0';
-				str[right--] = '2';
-				str[right--] = '%';
+				str[new_p--] = '0';
+				str[new_p--] = '2';
+				str[new_p--] = '%';
+				old_p--;
 			}
 		}
-		return;
 	}
 };
