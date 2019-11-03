@@ -12,26 +12,16 @@
 class Solution {
 public:
 	TreeNode* inorderSuccessor(TreeNode* p) {
-		if (p == nullptr) {
-			return nullptr;
-		}
-
+		if (!p) return nullptr;
+		TreeNode *node = p;
 		if (p->right) {
-			p = p->right;
-			while (p->left) {
-				p = p->left;
-			}
-			return p;
+			node = p->right;
+			while (node->left) node = node->left;
+			return node;
 		}
 		else {
-			while (p->father && p == p->father->right) {
-				p = p->father;
-			}
-			if (p->father && p == p->father->left) {
-				p = p->father;
-				return p;
-			}
+			while (node->father && node == node->father->right) node = node->father;
+			return node->father;
 		}
-		return nullptr;
 	}
 };
