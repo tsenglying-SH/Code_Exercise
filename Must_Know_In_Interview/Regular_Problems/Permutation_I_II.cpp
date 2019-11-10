@@ -32,35 +32,30 @@ public:
 };
 
 // we can do it without hash
+// just think this problem via the definition of permutation
 class Solution {
 public:
 	vector<vector<int>> permute(vector<int>& nums) {
 		if (nums.empty()) return{};
-		vector<int> path;
 		vector<vector<int>> res;
-		dfs(nums, path, res, 0);
+		dfs(nums, res, 0);
 		return res;
 	}
 
-	void dfs(vector<int> &nums, vector<int> &path, vector<vector<int>> &res, int k) {
-		if (k == nums.size()) {
-			res.push_back(path);
+	void dfs(vector<int> &nums, vector<vector<int>> &res, int k) {
+		if (k == nums.size() - 1) {
+			res.push_back(nums);
 			return;
 		}
 		if (k > nums.size()) return;
 
 		for (int i = k; i < nums.size(); ++i) {
-			path.push_back(nums[i]);
-			// save the space of hash
 			swap(nums[i], nums[k]);
-			dfs(nums, path, res, k + 1);
+			dfs(nums, res, k + 1);
 			swap(nums[i], nums[k]);
-			path.pop_back();
 		}
-
 	}
 };
-
 
 // leetcode 47 Permutations II
 class Solution {
