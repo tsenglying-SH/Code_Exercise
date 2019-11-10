@@ -59,7 +59,7 @@ public:
 
 
 // Leetcode 213 House Robber II
-// naive method, just check head is selected or not, time O(n), space O(1)(space optimization done yet)
+// based on normal DP, just check head is selected or not, time O(n), space O(1)(space optimization done yet)
 class Solution {
 public:
 	int rob(vector<int>& nums) {
@@ -80,6 +80,64 @@ public:
 			f3 = max(f1, f0 + nums[i]);
 		}
 		return max(f2, f3);
+	}
+};
+
+// based on state machine DP, just check head is selected or not, time O(n), space O(1)(space optimization done yet)
+class Solution {
+public:
+	int rob(vector<int>& nums) {
+		if (nums.empty()) return 0;
+		int n = nums.size();
+		int f0 = 0, f1 = 0, res;
+		for (int i = 2; i <= nums.size(); ++i) {
+			int tmp0 = f0;
+			f0 = max(f0, f1);
+			f1 = tmp0 + nums[i - 1];
+		}
+		res = max(f0, f1);
+		f0 = 0; f1 = nums[0];
+		for (int i = 2; i <= nums.size() - 1; ++i) {
+			int tmp0 = f0;
+			f0 = max(f0, f1);
+			f1 = tmp0 + nums[i - 1];
+		}
+		res = max(res, max(f0, f1));
+		return res;
+	}
+};
+
+// we can summary the solve above
+class Solution {
+public:
+	int rob(vector<int>& nums) {
+		if (nums.empty()) return 0;
+		if (nums.size() == 1) return nums[0];
+		return max(helper(vector<int>(nums.begin(), nums.end() - 1)),
+			helper(vector<int>(nums.begin() + 1, nums.end())));
+	}
+
+	int helper(vector<int> nums) {
+		if (nums.empty()) return 0;
+		int n = nums.size();
+		vector<int> f(2, -0x3f3f3f3f);
+		f[0] = 0;
+		for (int i = 1; i <= nums.size(); ++i) {
+			int tmp0 = f[0];
+			f[0] = max(f[0], f[1]);
+			f[1] = tmp0 + nums[i - 1];
+		}
+		return max(f[0], f[1]);
+	}
+	int helper2(vector<int> nums) {
+		if (nums.empty()) return 0;
+		vector<int> f(3, 0);
+		for (int i = 0; i < nums.size(); ++i) {
+			f[0] = f[1];
+			f[1] = f[2];
+			f[2] = max(f[1], f[0] + nums[i]);
+		}
+		return f[2];
 	}
 };
 
@@ -110,6 +168,8 @@ public:
 		}
 	}
 };
+
+
 
 // optimized DFS, time O(n), O(logn), due to recursion, hashtable is unnecessary
 class Solution {
